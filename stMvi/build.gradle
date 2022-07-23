@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.github.SageTripp'
-version = '0.1-beta01'
+version = '0.1-beta02'
 
 android {
     namespace 'com.st.stmvi'
@@ -64,7 +64,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.SageTripp'
                 artifactId = 'stMvi'
-                version = '0.1-beta01'
+                version = '0.1-beta02'
             }
         }
     }
