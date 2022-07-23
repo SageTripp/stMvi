@@ -4,8 +4,8 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.gitee.SageTripp'
-version = '1.0-beta02'
+group = 'com.github.SageTripp'
+version = '0.1-beta01'
 
 android {
     namespace 'com.st.stmvi'
@@ -62,9 +62,9 @@ afterEvaluate {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.gitee.SageTripp'
+                groupId = 'com.github.SageTripp'
                 artifactId = 'stMvi'
-                version = '1.0-beta02'
+                version = '0.1-beta01'
             }
         }
     }
