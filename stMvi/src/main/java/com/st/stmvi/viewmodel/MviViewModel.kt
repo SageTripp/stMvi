@@ -1,8 +1,6 @@
 package com.st.stmvi.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.st.stmvi.ext.state
-import com.st.stmvi.ext.withState
 import com.st.stmvi.state.UiEvent
 import com.st.stmvi.state.UiState
 import com.st.stmvi.store.Executor
@@ -19,4 +17,13 @@ abstract class MviViewModel<S : UiState, E : UiEvent>(initializerState: S) : Vie
 
 
     protected fun sendEvent(event: E) = uiExecutor.sendEvent(event)
+
+
+    protected inline fun <S : UiState, E : UiEvent> Executor<S, E>.withState(
+        action: Executor<S, E>.(S) -> Unit
+    ) {
+        action(state)
+    }
+
+    protected val <S : UiState> UiStore<S, *>.state get() = stateFlow.value
 }
