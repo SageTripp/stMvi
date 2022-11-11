@@ -1,6 +1,7 @@
 package com.st.stmvi.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.st.stmvi.ext.state
 import com.st.stmvi.ext.withState
 import com.st.stmvi.state.UiEvent
 import com.st.stmvi.state.UiState

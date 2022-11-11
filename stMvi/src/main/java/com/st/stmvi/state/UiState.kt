@@ -1,3 +1,5 @@
 package com.st.stmvi.state
 
-interface UiState
+interface UiState {
+    companion object : UiState
+}
