@@ -99,34 +99,3 @@ class LoadStateListener {
         onFinish = block
     }
 }
-
-context(ViewModel) fun AsyncTask.error(msg: String, e: Throwable? = null) {
-    loadState.value = LoadState.Error(msg, e)
-}
-
-context(ViewModel) fun AsyncTask.idle() {
-    loadState.value = LoadState.Idle
-}
-
-context(ViewModel) fun AsyncTask.loading() {
-    loadState.value = LoadState.Loading
-}
-
-context(ViewModel) fun AsyncTask.finish() {
-    loadState.value = LoadState.Finish
-}
-
-context(ViewModel) fun AsyncTask.exec(
-    errorMsg: (e: Throwable) -> String = { "执行异常" },
-    executor: suspend () -> Unit,
-) {
-    viewModelScope.launch {
-        loading()
-        try {
-            executor()
-        } catch (e: Exception) {
-            error(errorMsg(e), e)
-        }
-        finish()
-    }
-}
