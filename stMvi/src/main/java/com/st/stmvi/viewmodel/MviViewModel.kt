@@ -56,10 +56,10 @@ abstract class MviViewModel<S : UiState, E : UiEvent>(initializerState: S) : Vie
             loading()
             try {
                 executor()
+                finish()
             } catch (e: Exception) {
                 error(errorMsg(e), e)
             }
-            finish()
         }
     }
 }
