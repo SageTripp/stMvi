@@ -10,19 +10,25 @@ import androidx.compose.runtime.rememberUpdatedState
 import com.st.stmvi.state.UiEvent
 import com.st.stmvi.store.UiStore
 import com.st.stmvi.viewmodel.MviViewModel
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun <E : UiEvent> UiStore<*, E>.Event(action: suspend (E) -> Unit) {
+fun <E : UiEvent> UiStore<*, E>.Event(cancelLast: Boolean = false, action: suspend (E) -> Unit) {
     val eventInvoker by rememberUpdatedState(action)
     LaunchedEffect(Unit) {
-        eventFlow.onEach(eventInvoker).launchIn(this)
+        if (cancelLast) {
+            eventFlow.collectLatest(action)
+        } else {
+            eventFlow.collect(action)
+        }
     }
 }
 
 
 @Composable
-fun <E : UiEvent> MviViewModel<*, E>.Event(action: suspend (E) -> Unit) {
-    uiStore.Event(action)
+fun <E : UiEvent> MviViewModel<*, E>.Event(
+    cancelLast: Boolean = false,
+    action: suspend (E) -> Unit
+) {
+    uiStore.Event(cancelLast, action)
 }

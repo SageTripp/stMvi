@@ -49,13 +49,13 @@ abstract class MviViewModel<S : UiState, E : UiEvent>(initializerState: S) : Vie
     }
 
     protected fun AsyncTask.exec(
-        errorMsg: (e: Throwable) -> String = { "执行异常" },
-        executor: suspend () -> Unit,
+        errorMsg: (e: Throwable) -> String = { e -> e.message.orEmpty().ifEmpty { "执行异常" } },
+        executor: suspend (S) -> Unit,
     ) {
         viewModelScope.launch {
             loading()
             try {
-                executor()
+                executor(uiStore.state)
                 finish()
             } catch (e: Exception) {
                 error(errorMsg(e), e)

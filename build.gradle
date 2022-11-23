@@ -1,7 +1,7 @@
 buildscript {
     ext {
         group = "com.github.SageTripp"
-        version = '0.1-beta14'
+        version = '0.1-beta15'
         artifactId = 'stMvi'
         kotlin_version = "1.7.10"
         compose_version = '1.3.0'
