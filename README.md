@@ -1,3 +1,5 @@
+!Deprecated 该项目已迁移至[stLibs](https://jitpack.io/#com.gitee.SageTripp/stLibs)
+
 # stMvi
 [![](https://jitpack.io/v/com.gitee.SageTripp/stMvi.svg)](https://jitpack.io/#com.gitee.SageTripp/stMvi)
 
